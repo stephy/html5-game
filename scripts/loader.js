@@ -4,6 +4,11 @@ var jewel = {
 //wait until main document is loaded
 window.addEventListener('load', function(){
 
+//determine weather standalone mode is enabled
+Modernizr.addTest("standalone", function(){
+	return (window.navigator.standalone !== false);
+});
+
 //start dynamic loading
 Modernizr.load([
 	{
@@ -11,17 +16,33 @@ Modernizr.load([
 			'scripts/sizzle.js',
 			'scripts/dom.js',
 			'scripts/game.js',
-			'scripts/screen.splash.js',
-			'scripts/screen.main-menu.js'
-		],
-		//called when all files have finished loading and executing
+		]
+	}, {
+		test: Modernizr.standalone,
+		yep: 'scripts/screen.splash.js',
+		nope: 'scripts/screen.install.js',
 		complete: function(){
-			//show the first screen
-			jewel.game.showScreen("splash-screen");
+			if(Modernizr.standalone){
+				jewel.game.showScreen("splash-screen");
+			}else{
+				jewel.game.showScreen("install-screen");
+			}
+			
 		}
 	}
 
 ]);
+
+//loading stage 2
+//only activated if the gane is running in standalone mode
+//ensuring that you don't waste bandwith loading unneeded resources
+if(Modernizr.standalone){
+	Modernizr.load([
+	{
+		load: ['scripts/screen.main-menu.js']
+	}
+	]);
+}
 
 
 }, false);//end of load
