@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width" user-scalable="no">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<title>Jewel Warrior</title>
+	<link rel="stylesheet" href="styles/main.css">
+	<link rel ="stylesheet" href ="styles/mobile.css" media ="screen and (max-device-width: 768px) and (orientation: portrait), screen and (max-device-width: 1024px) and (orientation: landscape)" />
+
+
+	<script src="scripts/modernizr.custom.77440.js"></script>
+	<script src="scripts/loader.js"></script>
+</head>
+<body>
+
+<div id="game">
+	<!--game goes here -->
+	<div class="screen" id="splash-screen">
+		<h1 class="logo">Jewel <br /> Warrior</h1>
+		<span>Click to continue</span>
+
+	</div><!--end of splash screen -->
+	<div class="screen" id="main-menu">
+		<h2 class="logo">Jewel <br /> Warrior</h2>
+
+		<ul class="menu">
+			<li><button name="game-screen">Play</button></li>
+			<li><button name="hiscore">Highscore</button></li>
+			<li><button name="about">About</button></li>
+			<li><button name="exit-screen">Exit</button></li>
+		</ul>
+
+	</div><!--end of main menu -->
+	<div class="screen" id="game-screen"></div>
+	<div class="screen" id="high-scores"></div>
+</div>
+
+</body>
+</html>
