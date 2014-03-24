@@ -15,6 +15,18 @@ Modernizr.addTest("standalone", function(){
 	return (window.navigator.standalone !== false);
 });
 
+/*
+	extend yepnope with preloading
+	this prefix lets you add "preload!" to the paths passed to 
+	Modernizr.load(). If a file has the prefix, the script doesn't 
+	execute.
+*/
+yepnope.addPrefix("preload", function(resource){
+	resource.noexec = true;
+	return resource;
+});
+
+//stage 1
 //start dynamic loading
 Modernizr.load([
 	{
@@ -47,10 +59,15 @@ if(Modernizr.standalone){
 	Modernizr.load([
 	{
 		load: [
-			'scripts/screen.main-menu.js',
-			'scripts/board.js'
+			'scripts/screen.main-menu.js'
 			]
+	}, {
+		test: Modernizr.webworkers,
+		yep: [ "scripts/board.worker-interface.js",
+			   "preload!scripts/board.js" ],
+		nope: "scripts/board.js"
 	}
+
 	]);
 }
 
