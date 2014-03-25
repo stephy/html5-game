@@ -11,7 +11,7 @@ jewel.board = (function(){
 		cold = jewel.cols;
 		messageCount = 0;
 		callbacks = [];
-		worker = new Worker("scripts/board.woker.js");
+		worker = new Worker("scripts/board.worker.js");
 
 		dom.bind(worker, "message", messageHandler);
 		post("initialize", settings, callback);
